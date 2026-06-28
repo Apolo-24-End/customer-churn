@@ -284,11 +284,29 @@ async function runPrediction() {
 }
 
 // ── Page: Customer Deciles ───────────────────────────────────
+let _decileGroups = null;
+
+function downloadDecileCSV(decile) {
+  const group = _decileGroups?.find(g => g.decile === decile);
+  if (!group) return;
+  const rows = [["customer_id", "churn_probability"]];
+  group.customers.forEach(c => rows.push([c.customer_id, c.churn_probability.toFixed(4)]));
+  const csv = rows.map(r => r.join(",")).join("\n");
+  const blob = new Blob([csv], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `decil_${decile}_clientes.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 async function loadChurners() {
   const container = document.getElementById("churners-content");
   loading(container);
   try {
     const groups = await API.predict.decileGroups(20);
+    _decileGroups = groups;
 
     const cards = groups.map(g => {
       const pct = (g.avg_probability * 100).toFixed(1);
@@ -306,15 +324,20 @@ async function loadChurners() {
 
       return `
         <div class="card" style="margin-bottom:16px">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-            ${decileBadge(g.decile)}
-            <div>
-              <span style="font-weight:700;font-size:15px">Decil ${g.decile}</span>
-              <span style="color:var(--text-muted);font-size:12px;margin-left:10px">
-                ${fmt(g.customer_count)} clientes · Prob. promedio: <strong>${pct}%</strong>
-                · Rango: ${(g.min_probability * 100).toFixed(1)}% – ${(g.max_probability * 100).toFixed(1)}%
-              </span>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div style="display:flex;align-items:center;gap:12px">
+              ${decileBadge(g.decile)}
+              <div>
+                <span style="font-weight:700;font-size:15px">Decil ${g.decile}</span>
+                <span style="color:var(--text-muted);font-size:12px;margin-left:10px">
+                  ${fmt(g.customer_count)} clientes · Prob. promedio: <strong>${pct}%</strong>
+                  · Rango: ${(g.min_probability * 100).toFixed(1)}% – ${(g.max_probability * 100).toFixed(1)}%
+                </span>
+              </div>
             </div>
+            <button onclick="downloadDecileCSV(${g.decile})" class="btn-download" title="Descargar CSV">
+              &#8681; CSV
+            </button>
           </div>
           <div class="table-container">
             <table class="churners-table">

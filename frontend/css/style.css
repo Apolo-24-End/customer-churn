@@ -422,6 +422,29 @@ body {
   border-color: var(--chart-navy);
 }
 
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  transition: all var(--transition);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-download:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border-color: var(--chart-navy);
+}
+
 /* ── Prediction result ── */
 .result-card {
   background: var(--bg-card);
