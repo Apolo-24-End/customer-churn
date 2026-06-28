@@ -21,6 +21,11 @@
     </div>
 
     <nav class="sidebar-nav">
+      <div class="nav-section-label">Proyecto</div>
+      <button class="nav-item" data-page="proyecto" onclick="navigate('proyecto')">
+        <span class="nav-icon">◇</span> Contexto
+      </button>
+
       <div class="nav-section-label">Dashboard</div>
       <button class="nav-item active" data-page="overview" onclick="navigate('overview')">
         <span class="nav-icon">◈</span> Overview
@@ -51,6 +56,118 @@
 
   <!-- ── Main ── -->
   <main class="main-content">
+
+    <!-- Proyecto / Contexto -->
+    <section id="page-proyecto" class="page">
+      <div class="ctx-hero">
+        <div class="ctx-eyebrow">Problema &amp; Solución</div>
+        <h2 class="ctx-thesis">Cada mes, clientes valiosos se van<br>en silencio. Este modelo los identifica<br><em>antes</em> de que ocurra.</h2>
+      </div>
+
+      <div class="ctx-block">
+        <div class="ctx-block-label">01 — Contexto</div>
+        <div class="ctx-block-body">
+          <div class="ctx-stat-col">
+            <div class="ctx-stat">
+              <span class="ctx-stat-num">1M</span>
+              <span class="ctx-stat-desc">registros de clientes<br>analizados</span>
+            </div>
+            <div class="ctx-stat">
+              <span class="ctx-stat-num">32</span>
+              <span class="ctx-stat-desc">variables por cliente<br>demográficas y de comportamiento</span>
+            </div>
+            <div class="ctx-stat">
+              <span class="ctx-stat-num">26%</span>
+              <span class="ctx-stat-desc">tasa de churn<br>en el período estudiado</span>
+            </div>
+          </div>
+          <div class="ctx-prose-col">
+            <p>Una empresa de telecomunicaciones con más de un millón de clientes enfrenta un desafío crítico: una proporción significativa de su base abandona el servicio cada mes. La pérdida de un cliente no solo implica la pérdida inmediata de ingresos recurrentes, sino también el costo de adquisición que se había invertido para captarlo.</p>
+            <p>El problema no es que el churn ocurra — es que ocurre de forma invisible. Sin herramientas predictivas, el equipo de retención actúa en retrospectiva: cuando el cliente ya decidió irse, cualquier intervención llega tarde.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ctx-block">
+        <div class="ctx-block-label">02 — Puntos de Dolor</div>
+        <div class="ctx-pain-grid">
+          <div class="ctx-pain-item">
+            <div class="ctx-pain-tag">Visibilidad</div>
+            <div class="ctx-pain-title">El churn es invisible hasta que ya ocurrió</div>
+            <div class="ctx-pain-body">La empresa se entera de que un cliente se fue cuando deja de facturar. No hay señales de alerta tempranas en los sistemas actuales. Para entonces, revertir la decisión es casi imposible.</div>
+          </div>
+          <div class="ctx-pain-item">
+            <div class="ctx-pain-tag">Eficiencia</div>
+            <div class="ctx-pain-title">Las campañas de retención son costosas y dispersas</div>
+            <div class="ctx-pain-body">Sin saber quién va a irse, los esfuerzos de retención se aplican de forma masiva o aleatoria. Se ofrece descuentos a clientes que no iban a churnar y se ignora a quienes sí lo harán.</div>
+          </div>
+          <div class="ctx-pain-item">
+            <div class="ctx-pain-tag">Priorización</div>
+            <div class="ctx-pain-title">No existe un ranking de riesgo accionable</div>
+            <div class="ctx-pain-body">El equipo comercial no tiene una lista ordenada por urgencia. Sin priorización, los recursos limitados de retención se distribuyen sin criterio de impacto potencial ni valor del cliente.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ctx-block">
+        <div class="ctx-block-label">03 — Solución Propuesta</div>
+        <div class="ctx-solution">
+          <div class="ctx-pipeline">
+            <div class="ctx-pipe-step">
+              <div class="ctx-pipe-icon">⬡</div>
+              <div class="ctx-pipe-name">Datos</div>
+              <div class="ctx-pipe-detail">1M clientes · 32 variables · historial de comportamiento</div>
+            </div>
+            <div class="ctx-pipe-arrow">→</div>
+            <div class="ctx-pipe-step">
+              <div class="ctx-pipe-icon">⬡</div>
+              <div class="ctx-pipe-name">Ingeniería de Features</div>
+              <div class="ctx-pipe-detail">Encoding, SMOTE, selección de las 25 variables más predictivas</div>
+            </div>
+            <div class="ctx-pipe-arrow">→</div>
+            <div class="ctx-pipe-step">
+              <div class="ctx-pipe-icon">⬡</div>
+              <div class="ctx-pipe-name">Ensemble ML</div>
+              <div class="ctx-pipe-detail">LightGBM + XGBoost + Logistic Regression + Stacking</div>
+            </div>
+            <div class="ctx-pipe-arrow">→</div>
+            <div class="ctx-pipe-step ctx-pipe-step--accent">
+              <div class="ctx-pipe-icon">⬡</div>
+              <div class="ctx-pipe-name">Score Individual</div>
+              <div class="ctx-pipe-detail">Probabilidad de churn por cliente · AUC-ROC 0.684</div>
+            </div>
+            <div class="ctx-pipe-arrow">→</div>
+            <div class="ctx-pipe-step ctx-pipe-step--accent">
+              <div class="ctx-pipe-icon">⬡</div>
+              <div class="ctx-pipe-name">Deciles de Riesgo</div>
+              <div class="ctx-pipe-detail">Ranking accionable · exportable por segmento</div>
+            </div>
+          </div>
+
+          <div class="ctx-before-after">
+            <div class="ctx-before">
+              <div class="ctx-ba-label">Sin el modelo</div>
+              <ul class="ctx-ba-list ctx-ba-list--before">
+                <li>Churn detectado después de que ocurre</li>
+                <li>Campañas de retención masivas sin foco</li>
+                <li>Sin distinción entre clientes de alto y bajo riesgo</li>
+                <li>Decisiones basadas en intuición</li>
+              </ul>
+            </div>
+            <div class="ctx-divider-v"></div>
+            <div class="ctx-after">
+              <div class="ctx-ba-label">Con el modelo</div>
+              <ul class="ctx-ba-list ctx-ba-list--after">
+                <li>Identificación proactiva 30–60 días antes</li>
+                <li>Intervenciones dirigidas al decil de mayor riesgo</li>
+                <li>Score individual para cada cliente de la base</li>
+                <li>Decisiones respaldadas por datos</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Overview -->
     <section id="page-overview" class="page active">

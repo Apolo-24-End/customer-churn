@@ -345,6 +345,7 @@ async function loadChurners() {
 
 // ── Page loader map ──────────────────────────────────────────
 const PAGE_LOADERS = {
+  proyecto: () => {},
   overview: loadOverview,
   eda: loadEDA,
   models: loadModels,
