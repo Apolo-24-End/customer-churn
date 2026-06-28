@@ -10,7 +10,7 @@ function navigate(pageId) {
 // ── Utilities ────────────────────────────────────────────────
 function fmt(n) { return typeof n === "number" ? n.toLocaleString() : n; }
 function fmtPct(n) { return `${n}%`; }
-function loading(el) { el.innerHTML = `<div class="loading"><div class="spinner"></div> Loading data...</div>`; }
+function loading(el) { el.innerHTML = `<div class="loading"><div class="spinner"></div> Cargando datos...</div>`; }
 
 function riskBadge(level) {
   const cls = { High: "badge-high", Medium: "badge-medium", Low: "badge-low" }[level] || "badge-low";
@@ -32,6 +32,7 @@ function errorBanner(message) {
         <div class="error-banner-msg">${clean}</div>
       </div>
     </div>`;
+
 }
 
 function downsampleROC(fpr, tpr, nPoints = 250) {
@@ -92,16 +93,16 @@ async function loadEDA() {
 function buildEDAHTML() {
   return `
     <div class="charts-grid">
-      <div class="card"><div class="card-title">Churn Distribution</div><div class="chart-container"><canvas id="eda-churn-donut"></canvas></div></div>
-      <div class="card"><div class="card-title">Age Distribution</div><div class="chart-container"><canvas id="eda-age-hist"></canvas></div></div>
-      <div class="card"><div class="card-title">Annual Income Distribution</div><div class="chart-container"><canvas id="eda-income-hist"></canvas></div></div>
-      <div class="card"><div class="card-title">Monthly Charges Distribution</div><div class="chart-container"><canvas id="eda-charges-hist"></canvas></div></div>
-      <div class="card"><div class="card-title">Churn Rate by Contract Type</div><div class="chart-container"><canvas id="eda-contract-bar"></canvas></div></div>
-      <div class="card"><div class="card-title">Churn Rate by Gender</div><div class="chart-container"><canvas id="eda-gender-bar"></canvas></div></div>
-      <div class="card"><div class="card-title">Churn Rate by Payment Method</div><div class="chart-container"><canvas id="eda-payment-bar"></canvas></div></div>
-      <div class="card"><div class="card-title">Churn Rate by Tenure Group</div><div class="chart-container"><canvas id="eda-tenure-bar"></canvas></div></div>
+      <div class="card"><div class="card-title">Distribución de Churn</div><div class="chart-container"><canvas id="eda-churn-donut"></canvas></div></div>
+      <div class="card"><div class="card-title">Distribución de Edad</div><div class="chart-container"><canvas id="eda-age-hist"></canvas></div></div>
+      <div class="card"><div class="card-title">Distribución de Ingreso Anual</div><div class="chart-container"><canvas id="eda-income-hist"></canvas></div></div>
+      <div class="card"><div class="card-title">Distribución de Cargos Mensuales</div><div class="chart-container"><canvas id="eda-charges-hist"></canvas></div></div>
+      <div class="card"><div class="card-title">Tasa de Churn por Tipo de Contrato</div><div class="chart-container"><canvas id="eda-contract-bar"></canvas></div></div>
+      <div class="card"><div class="card-title">Tasa de Churn por Género</div><div class="chart-container"><canvas id="eda-gender-bar"></canvas></div></div>
+      <div class="card"><div class="card-title">Tasa de Churn por Método de Pago</div><div class="chart-container"><canvas id="eda-payment-bar"></canvas></div></div>
+      <div class="card"><div class="card-title">Tasa de Churn por Antigüedad</div><div class="chart-container"><canvas id="eda-tenure-bar"></canvas></div></div>
     </div>
-    <div class="card"><div class="card-title">Feature Correlation with Churn</div><div class="chart-container" style="height:340px"><canvas id="eda-corr-bar"></canvas></div></div>
+    <div class="card"><div class="card-title">Correlación de Variables con Churn</div><div class="chart-container" style="height:340px"><canvas id="eda-corr-bar"></canvas></div></div>
   `;
 }
 
@@ -146,7 +147,7 @@ function buildModelsHTML(cmp, feats) {
     const isBest = m === best;
     const modelLabel = m.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
     return `<tr class="${isBest ? "best-row" : ""}">
-      <td>${modelLabel} ${isBest ? '<span class="badge badge-best">Best</span>' : ""}</td>
+      <td>${modelLabel} ${isBest ? '<span class="badge badge-best">Mejor</span>' : ""}</td>
       <td><strong>${d.auc || "-"}</strong></td>
       <td>${d.f1 || "-"}</td>
       <td>${d.precision || "-"}</td>
@@ -160,29 +161,29 @@ function buildModelsHTML(cmp, feats) {
 
   return `
     <div class="card">
-      <div class="card-title">Model Comparison</div>
+      <div class="card-title">Comparación de Modelos</div>
       <div class="table-container">
         <table class="metrics-table">
-          <thead><tr><th>Model</th><th>AUC-ROC</th><th>F1</th><th>Precision</th><th>Recall</th><th>Accuracy</th><th>CV AUC (5-fold)</th></tr></thead>
+          <thead><tr><th>Modelo</th><th>AUC-ROC</th><th>F1</th><th>Precisión</th><th>Recall</th><th>Exactitud</th><th>CV AUC (5-fold)</th></tr></thead>
           <tbody>${rows}</tbody>
         </table>
       </div>
     </div>
     <div class="models-row">
       <div class="card">
-        <div class="card-title">ROC Curves — All Models</div>
+        <div class="card-title">Curvas ROC — Todos los Modelos</div>
         <div class="chart-container" style="height:300px"><canvas id="roc-chart"></canvas></div>
       </div>
       <div class="card">
-        <div class="card-title">Confusion Matrix — ${bestLabel}</div>
+        <div class="card-title">Matriz de Confusión — ${bestLabel}</div>
         <div id="cm-grid" class="confusion-grid"></div>
       </div>
     </div>
     <div class="card">
-      <div class="card-title">Feature Importance (Top 15) — Feature Selector (RF)</div>
+      <div class="card-title">Importancia de Variables (Top 15) — Selector de Features (RF)</div>
       <div class="table-container">
         <table class="fi-table">
-          <thead><tr><th>#</th><th>Feature</th><th style="min-width:180px">Importance</th><th>Score</th></tr></thead>
+          <thead><tr><th>#</th><th>Variable</th><th style="min-width:180px">Importancia</th><th>Score</th></tr></thead>
           <tbody id="fi-table-body"></tbody>
         </table>
       </div>
@@ -255,8 +256,8 @@ async function runPrediction() {
   };
 
   btn.disabled = true;
-  btn.innerHTML = `<div class="spinner"></div> Predicting...`;
-  resultEl.innerHTML = `<div class="loading"><div class="spinner"></div> Analyzing...</div>`;
+  btn.innerHTML = `<div class="spinner"></div> Prediciendo...`;
+  resultEl.innerHTML = `<div class="loading"><div class="spinner"></div> Analizando...</div>`;
 
   try {
     const result = await API.predict.single(data);
@@ -268,18 +269,18 @@ async function runPrediction() {
     resultEl.innerHTML = `
       <div style="text-align:center">
         <div class="risk-label ${levelClass}" style="font-size:48px;margin-bottom:4px">${pct}%</div>
-        <div class="risk-sublabel">Churn Probability</div>
+        <div class="risk-sublabel">Probabilidad de Churn</div>
         <div class="prob-bar" style="margin:20px 0 8px"><div class="prob-fill" style="width:${pct}%"></div></div>
         <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-bottom:20px"><span>Low</span><span>Medium</span><span>High</span></div>
         <div style="margin-bottom:16px">${riskBadge(level)}</div>
-        <div style="font-size:12px;color:var(--text-secondary);line-height:1.6;background:var(--bg-secondary);padding:12px;border-radius:8px">${result.interpretation}</div>
+        <div style="font-size:12px;color:var(--text-secondary);line-height:1.6;background:var(--bg-secondary);padding:12px;border-radius:8px">Probabilidad de churn: ${(prob * 100).toFixed(1)}%. Nivel de riesgo: ${level === "High" ? "Alto" : level === "Medium" ? "Medio" : "Bajo"}.</div>
       </div>
     `;
   } catch (e) {
     resultEl.innerHTML = `<div style="color:var(--danger);font-size:13px;padding:16px">${e.message}</div>`;
   } finally {
     btn.disabled = false;
-    btn.innerHTML = `<span>⚡</span> Predict Churn`;
+    btn.innerHTML = `<span>⚡</span> Predecir Churn`;
   }
 }
 
@@ -322,6 +323,7 @@ async function loadChurners() {
                   ${fmt(g.customer_count)} clientes · Prob. promedio: <strong>${pct}%</strong>
                   · Rango: ${(g.min_probability * 100).toFixed(1)}% – ${(g.max_probability * 100).toFixed(1)}%
                 </span>
+
               </div>
             </div>
             <button onclick="downloadDecileCSV(${g.decile})" class="btn-download" title="Descargar CSV">
@@ -330,7 +332,7 @@ async function loadChurners() {
           </div>
           <div class="table-container">
             <table class="churners-table">
-              <thead><tr><th>#</th><th>Customer ID</th><th>Churn Probability</th></tr></thead>
+              <thead><tr><th>#</th><th>ID Cliente</th><th>Prob. de Churn</th></tr></thead>
               <tbody>${rows}</tbody>
             </table>
           </div>
@@ -359,5 +361,5 @@ function showError(id, msg) {
 
 // ── Init ─────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
-  navigate("overview");
+  navigate("proyecto");
 });

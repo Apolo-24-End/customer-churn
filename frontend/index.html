@@ -22,35 +22,35 @@
 
     <nav class="sidebar-nav">
       <div class="nav-section-label">Proyecto</div>
-      <button class="nav-item" data-page="proyecto" onclick="navigate('proyecto')">
+      <button class="nav-item active" data-page="proyecto" onclick="navigate('proyecto')">
         <span class="nav-icon">◇</span> Contexto
       </button>
 
-      <div class="nav-section-label">Dashboard</div>
-      <button class="nav-item active" data-page="overview" onclick="navigate('overview')">
-        <span class="nav-icon">◈</span> Overview
+      <div class="nav-section-label">Panel</div>
+      <button class="nav-item" data-page="overview" onclick="navigate('overview')">
+        <span class="nav-icon">◈</span> Resumen
       </button>
 
-      <div class="nav-section-label">Analysis</div>
+      <div class="nav-section-label">Análisis</div>
       <button class="nav-item" data-page="eda" onclick="navigate('eda')">
-        <span class="nav-icon">◉</span> Exploratory Data
+        <span class="nav-icon">◉</span> Datos Exploratorios
       </button>
       <button class="nav-item" data-page="models" onclick="navigate('models')">
-        <span class="nav-icon">◎</span> Model Performance
+        <span class="nav-icon">◎</span> Rendimiento de Modelos
       </button>
 
-      <div class="nav-section-label">Predictions</div>
+      <div class="nav-section-label">Predicciones</div>
       <button class="nav-item" data-page="predict" onclick="navigate('predict')">
-        <span class="nav-icon">◈</span> Predict Customer
+        <span class="nav-icon">◈</span> Predecir Cliente
       </button>
       <button class="nav-item" data-page="churners" onclick="navigate('churners')">
-        <span class="nav-icon">◉</span> Customer Deciles
+        <span class="nav-icon">◉</span> Deciles de Clientes
       </button>
     </nav>
 
     <div class="sidebar-status">
       <span class="status-dot"></span>
-      <span style="color:var(--text-secondary)">API Connected</span>
+      <span style="color:var(--text-secondary)">API Conectada</span>
     </div>
   </aside>
 
@@ -58,7 +58,7 @@
   <main class="main-content">
 
     <!-- Proyecto / Contexto -->
-    <section id="page-proyecto" class="page">
+    <section id="page-proyecto" class="page active">
       <div class="ctx-hero">
         <div class="ctx-eyebrow">Problema &amp; Solución</div>
         <h2 class="ctx-thesis">Cada mes, clientes valiosos se van<br>en silencio. Este modelo los identifica<br><em>antes</em> de que ocurra.</h2>
@@ -170,30 +170,30 @@
     </section>
 
     <!-- Overview -->
-    <section id="page-overview" class="page active">
+    <section id="page-overview" class="page">
       <div class="page-header">
-        <h2>Overview</h2>
-        <p>Executive summary of churn metrics and model performance</p>
+        <h2>Resumen</h2>
+        <p>Resumen ejecutivo de métricas de churn y rendimiento del modelo</p>
       </div>
 
       <div class="kpi-grid">
         <div class="kpi-card">
-          <div class="kpi-label">Total Customers</div>
+          <div class="kpi-label">Total Clientes</div>
           <div class="kpi-value accent" id="kpi-total">—</div>
-          <div class="kpi-sub">In dataset</div>
+          <div class="kpi-sub">En el dataset</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Churned</div>
+          <div class="kpi-label">Abandonaron</div>
           <div class="kpi-value danger" id="kpi-churn">—</div>
-          <div class="kpi-sub">Customers lost</div>
+          <div class="kpi-sub">Clientes perdidos</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Churn Rate</div>
+          <div class="kpi-label">Tasa de Churn</div>
           <div class="kpi-value warning" id="kpi-rate">—</div>
-          <div class="kpi-sub">Overall rate</div>
+          <div class="kpi-sub">Tasa general</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Best AUC-ROC</div>
+          <div class="kpi-label">Mejor AUC-ROC</div>
           <div class="kpi-value success" id="kpi-auc">—</div>
           <div class="kpi-sub" id="kpi-best">—</div>
         </div>
@@ -201,19 +201,19 @@
 
       <div class="charts-grid">
         <div class="card">
-          <div class="card-title">Churn Distribution</div>
+          <div class="card-title">Distribución de Churn</div>
           <div class="chart-container"><canvas id="chart-churn-dist"></canvas></div>
         </div>
         <div class="card">
-          <div class="card-title">Churn Rate by Contract</div>
+          <div class="card-title">Tasa de Churn por Contrato</div>
           <div class="chart-container"><canvas id="chart-contract"></canvas></div>
         </div>
         <div class="card">
-          <div class="card-title">Churn Rate by Tenure Group</div>
+          <div class="card-title">Tasa de Churn por Antigüedad</div>
           <div class="chart-container"><canvas id="chart-tenure"></canvas></div>
         </div>
         <div class="card">
-          <div class="card-title">Avg. Satisfaction by Churn</div>
+          <div class="card-title">Satisfacción Promedio por Churn</div>
           <div class="chart-container"><canvas id="chart-satisfaction"></canvas></div>
         </div>
       </div>
@@ -223,96 +223,96 @@
     <!-- EDA -->
     <section id="page-eda" class="page">
       <div class="page-header">
-        <h2>Exploratory Data Analysis</h2>
-        <p>Distribution and behavioral patterns across the dataset</p>
+        <h2>Análisis Exploratorio de Datos</h2>
+        <p>Distribución y patrones de comportamiento en el dataset</p>
       </div>
-      <div id="eda-content"><div class="loading"><div class="spinner"></div> Loading EDA...</div></div>
+      <div id="eda-content"><div class="loading"><div class="spinner"></div> Cargando análisis...</div></div>
     </section>
 
     <!-- Models -->
     <section id="page-models" class="page">
       <div class="page-header">
-        <h2>Model Performance</h2>
-        <p>Cross-validated comparison of LightGBM, XGBoost and Logistic Regression</p>
+        <h2>Rendimiento de Modelos</h2>
+        <p>Comparación con validación cruzada de LightGBM, XGBoost y Regresión Logística</p>
       </div>
-      <div id="models-content"><div class="loading"><div class="spinner"></div> Loading results...</div></div>
+      <div id="models-content"><div class="loading"><div class="spinner"></div> Cargando resultados...</div></div>
     </section>
 
     <!-- Predict -->
     <section id="page-predict" class="page">
       <div class="page-header">
-        <h2>Predict Customer Churn</h2>
-        <p>Enter customer attributes to get an individual churn probability</p>
+        <h2>Predecir Churn del Cliente</h2>
+        <p>Ingresa los atributos del cliente para obtener su probabilidad individual de churn</p>
       </div>
 
       <div class="predict-layout">
         <div class="card">
-          <div class="card-title">Customer Attributes</div>
+          <div class="card-title">Atributos del Cliente</div>
           <form id="predict-form">
             <div class="form-grid">
-              <div class="form-group"><label>Age</label><input name="age" type="number" value="35" min="18" max="100" /></div>
-              <div class="form-group"><label>Gender</label>
+              <div class="form-group"><label>Edad</label><input name="age" type="number" value="35" min="18" max="100" /></div>
+              <div class="form-group"><label>Género</label>
                 <select name="gender"><option>Male</option><option>Female</option></select>
               </div>
-              <div class="form-group"><label>Annual Income</label><input name="annual_income" type="number" value="55000" /></div>
-              <div class="form-group"><label>Education</label>
+              <div class="form-group"><label>Ingreso Anual</label><input name="annual_income" type="number" value="55000" /></div>
+              <div class="form-group"><label>Educación</label>
                 <select name="education"><option>college</option><option>master</option><option>high_school</option><option>phd</option></select>
               </div>
-              <div class="form-group"><label>Marital Status</label>
+              <div class="form-group"><label>Estado Civil</label>
                 <select name="marital_status"><option>married</option><option>single</option><option>widowed</option></select>
               </div>
-              <div class="form-group"><label>Dependents</label><input name="dependents" type="number" value="1" min="0" /></div>
-              <div class="form-group"><label>Tenure (months)</label><input name="tenure" type="number" value="12" min="0" /></div>
-              <div class="form-group"><label>Contract</label>
+              <div class="form-group"><label>Dependientes</label><input name="dependents" type="number" value="1" min="0" /></div>
+              <div class="form-group"><label>Antigüedad (meses)</label><input name="tenure" type="number" value="12" min="0" /></div>
+              <div class="form-group"><label>Contrato</label>
                 <select name="contract"><option>month-to-month</option><option>one_year</option><option>two_year</option></select>
               </div>
-              <div class="form-group"><label>Payment Method</label>
+              <div class="form-group"><label>Método de Pago</label>
                 <select name="payment_method"><option>electronic_check</option><option>bank_transfer</option><option>credit_card</option><option>mailed_check</option></select>
               </div>
-              <div class="form-group"><label>Paperless Billing</label>
+              <div class="form-group"><label>Facturación Digital</label>
                 <select name="paperless_billing"><option>Yes</option><option>No</option></select>
               </div>
-              <div class="form-group"><label>Senior Citizen</label>
-                <select name="senior_citizen"><option value="0">No</option><option value="1">Yes</option></select>
+              <div class="form-group"><label>Adulto Mayor</label>
+                <select name="senior_citizen"><option value="0">No</option><option value="1">Sí</option></select>
               </div>
-              <div class="form-group"><label>Monthly Charges</label><input name="monthlycharges" type="number" value="65" step="0.01" /></div>
-              <div class="form-group"><label>Total Charges</label><input name="totalcharges" type="number" value="780" step="0.01" /></div>
-              <div class="form-group"><label>Num Services</label><input name="num_services" type="number" value="3" min="0" max="8" /></div>
-              <div class="form-group"><label>Phone Service</label>
-                <select name="has_phone_service"><option value="1">Yes</option><option value="0">No</option></select>
+              <div class="form-group"><label>Cargos Mensuales</label><input name="monthlycharges" type="number" value="65" step="0.01" /></div>
+              <div class="form-group"><label>Cargos Totales</label><input name="totalcharges" type="number" value="780" step="0.01" /></div>
+              <div class="form-group"><label>Núm. Servicios</label><input name="num_services" type="number" value="3" min="0" max="8" /></div>
+              <div class="form-group"><label>Servicio Telefónico</label>
+                <select name="has_phone_service"><option value="1">Sí</option><option value="0">No</option></select>
               </div>
-              <div class="form-group"><label>Internet Service</label>
-                <select name="has_internet_service"><option value="1">Yes</option><option value="0">No</option></select>
+              <div class="form-group"><label>Servicio de Internet</label>
+                <select name="has_internet_service"><option value="1">Sí</option><option value="0">No</option></select>
               </div>
-              <div class="form-group"><label>Online Security</label>
-                <select name="has_online_security"><option value="0">No</option><option value="1">Yes</option></select>
+              <div class="form-group"><label>Seguridad Online</label>
+                <select name="has_online_security"><option value="0">No</option><option value="1">Sí</option></select>
               </div>
-              <div class="form-group"><label>Online Backup</label>
-                <select name="has_online_backup"><option value="0">No</option><option value="1">Yes</option></select>
+              <div class="form-group"><label>Backup Online</label>
+                <select name="has_online_backup"><option value="0">No</option><option value="1">Sí</option></select>
               </div>
-              <div class="form-group"><label>Device Protection</label>
-                <select name="has_device_protection"><option value="0">No</option><option value="1">Yes</option></select>
+              <div class="form-group"><label>Protección de Dispositivo</label>
+                <select name="has_device_protection"><option value="0">No</option><option value="1">Sí</option></select>
               </div>
-              <div class="form-group"><label>Tech Support</label>
-                <select name="has_tech_support"><option value="0">No</option><option value="1">Yes</option></select>
+              <div class="form-group"><label>Soporte Técnico</label>
+                <select name="has_tech_support"><option value="0">No</option><option value="1">Sí</option></select>
               </div>
               <div class="form-group"><label>Streaming TV</label>
-                <select name="has_streaming_tv"><option value="0">No</option><option value="1">Yes</option></select>
+                <select name="has_streaming_tv"><option value="0">No</option><option value="1">Sí</option></select>
               </div>
-              <div class="form-group"><label>Streaming Movies</label>
-                <select name="has_streaming_movies"><option value="0">No</option><option value="1">Yes</option></select>
+              <div class="form-group"><label>Streaming Películas</label>
+                <select name="has_streaming_movies"><option value="0">No</option><option value="1">Sí</option></select>
               </div>
-              <div class="form-group"><label>Satisfaction (1-10)</label><input name="customer_satisfaction" type="number" value="7" min="1" max="10" step="0.5" /></div>
-              <div class="form-group"><label>Complaints</label><input name="num_complaints" type="number" value="0" min="0" /></div>
-              <div class="form-group"><label>Service Calls</label><input name="num_service_calls" type="number" value="1" min="0" /></div>
-              <div class="form-group"><label>Late Payments</label><input name="late_payments" type="number" value="0" min="0" /></div>
-              <div class="form-group"><label>Avg Monthly GB</label><input name="avg_monthly_gb" type="number" value="60" step="0.1" /></div>
-              <div class="form-group"><label>Days Since Interaction</label><input name="days_since_last_interaction" type="number" value="30" min="0" /></div>
-              <div class="form-group"><label>Credit Score (optional)</label><input name="credit_score" type="number" value="" placeholder="e.g. 650" /></div>
+              <div class="form-group"><label>Satisfacción (1-10)</label><input name="customer_satisfaction" type="number" value="7" min="1" max="10" step="0.5" /></div>
+              <div class="form-group"><label>Quejas</label><input name="num_complaints" type="number" value="0" min="0" /></div>
+              <div class="form-group"><label>Llamadas de Servicio</label><input name="num_service_calls" type="number" value="1" min="0" /></div>
+              <div class="form-group"><label>Pagos Tardíos</label><input name="late_payments" type="number" value="0" min="0" /></div>
+              <div class="form-group"><label>GB Promedio Mensual</label><input name="avg_monthly_gb" type="number" value="60" step="0.1" /></div>
+              <div class="form-group"><label>Días sin Interacción</label><input name="days_since_last_interaction" type="number" value="30" min="0" /></div>
+              <div class="form-group"><label>Score Crediticio (opcional)</label><input name="credit_score" type="number" value="" placeholder="ej. 650" /></div>
             </div>
             <div style="margin-top:20px">
               <button type="button" id="predict-btn" class="btn btn-primary" onclick="runPrediction()">
-                <span>⚡</span> Predict Churn
+                <span>⚡</span> Predecir Churn
               </button>
             </div>
           </form>
@@ -321,7 +321,7 @@
         <div>
           <div class="result-card" id="predict-result">
             <div style="color:var(--text-muted);font-size:13px;padding:40px 0">
-              Fill in the form and click<br/><strong style="color:var(--text-secondary)">Predict Churn</strong>
+              Completa el formulario y haz clic en<br/><strong style="color:var(--text-secondary)">Predecir Churn</strong>
             </div>
           </div>
         </div>
@@ -331,10 +331,10 @@
     <!-- Customer Deciles -->
     <section id="page-churners" class="page">
       <div class="page-header">
-        <h2>Customer Churn Deciles</h2>
-        <p>Top 100 customers ranked by churn probability — decile computed over the full sample (D10 = highest risk)</p>
+        <h2>Deciles de Churn</h2>
+        <p>Top 20 clientes por decil ordenados por probabilidad de churn — D10 = mayor riesgo</p>
       </div>
-      <div id="churners-content"><div class="loading"><div class="spinner"></div> Scoring customers...</div></div>
+      <div id="churners-content"><div class="loading"><div class="spinner"></div> Puntuando clientes...</div></div>
     </section>
 
   </main>
