@@ -1,6 +1,7 @@
 # Data (demasiado grande para GitHub)
 /data/
 *.csv
+!outputs/predictions_all.csv
 
 # Cache de Python
 __pycache__/
