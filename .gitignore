@@ -1,5 +1,5 @@
 # Data (demasiado grande para GitHub)
-data/
+/data/
 *.csv
 
 # Cache de Python
