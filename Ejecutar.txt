@@ -1,0 +1,2 @@
+python run.py pipeline
+python run.py api

@@ -1,0 +1,27 @@
+[
+  {
+    "customer_id": "CUST0000650858",
+    "churn_probability": 0.8821,
+    "decile": 10
+  },
+  {
+    "customer_id": "CUST0000018565",
+    "churn_probability": 0.8817,
+    "decile": 10
+  },
+  {
+    "customer_id": "CUST0000646434",
+    "churn_probability": 0.8704,
+    "decile": 10
+  },
+  {
+    "customer_id": "CUST0000549965",
+    "churn_probability": 0.8657,
+    "decile": 10
+  },
+  {
+    "customer_id": "CUST0000122592",
+    "churn_probability": 0.8605,
+    "decile": 10
+  }
+]

@@ -1,0 +1,212 @@
+[
+  {
+    "decile": 10,
+    "customer_count": 100001,
+    "avg_probability": 0.5431,
+    "min_probability": 0.4646,
+    "max_probability": 0.8821,
+    "customers": [
+      {
+        "customer_id": "CUST0000650858",
+        "churn_probability": 0.8821
+      },
+      {
+        "customer_id": "CUST0000018565",
+        "churn_probability": 0.8817
+      },
+      {
+        "customer_id": "CUST0000646434",
+        "churn_probability": 0.8704
+      }
+    ]
+  },
+  {
+    "decile": 9,
+    "customer_count": 100000,
+    "avg_probability": 0.4257,
+    "min_probability": 0.3929,
+    "max_probability": 0.4646,
+    "customers": [
+      {
+        "customer_id": "CUST0000124632",
+        "churn_probability": 0.4646
+      },
+      {
+        "customer_id": "CUST0000924186",
+        "churn_probability": 0.4646
+      },
+      {
+        "customer_id": "CUST0000240619",
+        "churn_probability": 0.4646
+      }
+    ]
+  },
+  {
+    "decile": 8,
+    "customer_count": 100000,
+    "avg_probability": 0.3665,
+    "min_probability": 0.342,
+    "max_probability": 0.3929,
+    "customers": [
+      {
+        "customer_id": "CUST0000672162",
+        "churn_probability": 0.3929
+      },
+      {
+        "customer_id": "CUST0000976162",
+        "churn_probability": 0.3929
+      },
+      {
+        "customer_id": "CUST0000959488",
+        "churn_probability": 0.3929
+      }
+    ]
+  },
+  {
+    "decile": 7,
+    "customer_count": 100000,
+    "avg_probability": 0.3203,
+    "min_probability": 0.2994,
+    "max_probability": 0.342,
+    "customers": [
+      {
+        "customer_id": "CUST0000300162",
+        "churn_probability": 0.342
+      },
+      {
+        "customer_id": "CUST0000142383",
+        "churn_probability": 0.342
+      },
+      {
+        "customer_id": "CUST0000136429",
+        "churn_probability": 0.342
+      }
+    ]
+  },
+  {
+    "decile": 6,
+    "customer_count": 100000,
+    "avg_probability": 0.2798,
+    "min_probability": 0.2605,
+    "max_probability": 0.2994,
+    "customers": [
+      {
+        "customer_id": "CUST0000082341",
+        "churn_probability": 0.2994
+      },
+      {
+        "customer_id": "CUST0000471021",
+        "churn_probability": 0.2994
+      },
+      {
+        "customer_id": "CUST0000807124",
+        "churn_probability": 0.2994
+      }
+    ]
+  },
+  {
+    "decile": 5,
+    "customer_count": 100000,
+    "avg_probability": 0.2416,
+    "min_probability": 0.2231,
+    "max_probability": 0.2605,
+    "customers": [
+      {
+        "customer_id": "CUST0000225553",
+        "churn_probability": 0.2605
+      },
+      {
+        "customer_id": "CUST0000425117",
+        "churn_probability": 0.2605
+      },
+      {
+        "customer_id": "CUST0000029610",
+        "churn_probability": 0.2605
+      }
+    ]
+  },
+  {
+    "decile": 4,
+    "customer_count": 100000,
+    "avg_probability": 0.205,
+    "min_probability": 0.1874,
+    "max_probability": 0.2231,
+    "customers": [
+      {
+        "customer_id": "CUST0000061068",
+        "churn_probability": 0.2231
+      },
+      {
+        "customer_id": "CUST0000006231",
+        "churn_probability": 0.2231
+      },
+      {
+        "customer_id": "CUST0000893041",
+        "churn_probability": 0.2231
+      }
+    ]
+  },
+  {
+    "decile": 3,
+    "customer_count": 100000,
+    "avg_probability": 0.1707,
+    "min_probability": 0.1545,
+    "max_probability": 0.1874,
+    "customers": [
+      {
+        "customer_id": "CUST0000829000",
+        "churn_probability": 0.1874
+      },
+      {
+        "customer_id": "CUST0000933460",
+        "churn_probability": 0.1874
+      },
+      {
+        "customer_id": "CUST0000261000",
+        "churn_probability": 0.1874
+      }
+    ]
+  },
+  {
+    "decile": 2,
+    "customer_count": 100000,
+    "avg_probability": 0.139,
+    "min_probability": 0.1234,
+    "max_probability": 0.1545,
+    "customers": [
+      {
+        "customer_id": "CUST0000128260",
+        "churn_probability": 0.1545
+      },
+      {
+        "customer_id": "CUST0000789258",
+        "churn_probability": 0.1545
+      },
+      {
+        "customer_id": "CUST0000195456",
+        "churn_probability": 0.1545
+      }
+    ]
+  },
+  {
+    "decile": 1,
+    "customer_count": 99999,
+    "avg_probability": 0.1032,
+    "min_probability": 0.0468,
+    "max_probability": 0.1234,
+    "customers": [
+      {
+        "customer_id": "CUST0000445208",
+        "churn_probability": 0.1234
+      },
+      {
+        "customer_id": "CUST0000112465",
+        "churn_probability": 0.1234
+      },
+      {
+        "customer_id": "CUST0000376877",
+        "churn_probability": 0.1234
+      }
+    ]
+  }
+]

@@ -1,0 +1,9 @@
+[
+  {
+    "timestamp": "20260628_112351",
+    "algorithm": "lightgbm",
+    "auc": 0.6837,
+    "optimal_threshold": 0.3131,
+    "file": "best_model.joblib"
+  }
+]

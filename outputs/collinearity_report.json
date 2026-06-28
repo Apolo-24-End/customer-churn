@@ -1,0 +1,300 @@
+{
+  "high_corr_pairs": [
+    {
+      "var_a": "num_complaints",
+      "var_b": "contract_x_complaints",
+      "pearson_r": 1.0,
+      "abs_r": 1.0
+    },
+    {
+      "var_a": "late_payments",
+      "var_b": "contract_x_late_payments",
+      "pearson_r": 1.0,
+      "abs_r": 1.0
+    },
+    {
+      "var_a": "complaint_rate",
+      "var_b": "contract_x_complaint_rate",
+      "pearson_r": 1.0,
+      "abs_r": 1.0
+    },
+    {
+      "var_a": "customer_satisfaction",
+      "var_b": "contract_x_satisfaction",
+      "pearson_r": 1.0,
+      "abs_r": 1.0
+    },
+    {
+      "var_a": "num_complaints",
+      "var_b": "log_num_complaints",
+      "pearson_r": 0.975,
+      "abs_r": 0.975
+    },
+    {
+      "var_a": "log_num_complaints",
+      "var_b": "contract_x_complaints",
+      "pearson_r": 0.975,
+      "abs_r": 0.975
+    },
+    {
+      "var_a": "signup_month",
+      "var_b": "signup_quarter",
+      "pearson_r": 0.9714,
+      "abs_r": 0.9714
+    },
+    {
+      "var_a": "senior_citizen",
+      "var_b": "senior_monthly_charges",
+      "pearson_r": 0.9427,
+      "abs_r": 0.9427
+    },
+    {
+      "var_a": "annual_income",
+      "var_b": "log_annual_income",
+      "pearson_r": 0.9361,
+      "abs_r": 0.9361
+    },
+    {
+      "var_a": "tenure",
+      "var_b": "totalcharges",
+      "pearson_r": 0.9128,
+      "abs_r": 0.9128
+    },
+    {
+      "var_a": "tenure",
+      "var_b": "satisfaction_x_tenure",
+      "pearson_r": 0.8725,
+      "abs_r": 0.8725
+    },
+    {
+      "var_a": "has_internet_service",
+      "var_b": "log_avg_monthly_gb",
+      "pearson_r": 0.847,
+      "abs_r": 0.847
+    },
+    {
+      "var_a": "totalcharges",
+      "var_b": "log_totalcharges",
+      "pearson_r": 0.8362,
+      "abs_r": 0.8362
+    },
+    {
+      "var_a": "tenure",
+      "var_b": "is_loyal_customer",
+      "pearson_r": 0.8337,
+      "abs_r": 0.8337
+    },
+    {
+      "var_a": "tenure",
+      "var_b": "log_totalcharges",
+      "pearson_r": 0.8318,
+      "abs_r": 0.8318
+    },
+    {
+      "var_a": "days_since_last_interaction",
+      "var_b": "log_days_since_last_interaction",
+      "pearson_r": 0.8316,
+      "abs_r": 0.8316
+    },
+    {
+      "var_a": "security_bundle_count",
+      "var_b": "total_active_services",
+      "pearson_r": 0.8263,
+      "abs_r": 0.8263
+    },
+    {
+      "var_a": "totalcharges",
+      "var_b": "satisfaction_x_tenure",
+      "pearson_r": 0.7956,
+      "abs_r": 0.7956
+    },
+    {
+      "var_a": "log_totalcharges",
+      "var_b": "is_new_customer",
+      "pearson_r": -0.7943,
+      "abs_r": 0.7943
+    },
+    {
+      "var_a": "log_annual_income",
+      "var_b": "monthly_income_ratio",
+      "pearson_r": -0.788,
+      "abs_r": 0.788
+    },
+    {
+      "var_a": "totalcharges",
+      "var_b": "is_loyal_customer",
+      "pearson_r": 0.7614,
+      "abs_r": 0.7614
+    }
+  ],
+  "high_vif_features": [
+    {
+      "feature": "has_device_protection",
+      "VIF": Infinity
+    },
+    {
+      "feature": "customer_satisfaction",
+      "VIF": Infinity
+    },
+    {
+      "feature": "entertainment_bundle_count",
+      "VIF": Infinity
+    },
+    {
+      "feature": "security_bundle_count",
+      "VIF": Infinity
+    },
+    {
+      "feature": "contract_x_late_payments",
+      "VIF": Infinity
+    },
+    {
+      "feature": "contract_x_complaints",
+      "VIF": Infinity
+    },
+    {
+      "feature": "contract_x_satisfaction",
+      "VIF": Infinity
+    },
+    {
+      "feature": "late_payments",
+      "VIF": Infinity
+    },
+    {
+      "feature": "complaint_rate",
+      "VIF": Infinity
+    },
+    {
+      "feature": "total_active_services",
+      "VIF": Infinity
+    },
+    {
+      "feature": "has_tech_support",
+      "VIF": 1558878375690.72
+    },
+    {
+      "feature": "has_streaming_movies",
+      "VIF": 588871525.93
+    },
+    {
+      "feature": "contract_x_complaint_rate",
+      "VIF": 84698741.64
+    },
+    {
+      "feature": "has_phone_service",
+      "VIF": 30746932.2
+    },
+    {
+      "feature": "has_streaming_tv",
+      "VIF": 24128275.06
+    },
+    {
+      "feature": "has_online_security",
+      "VIF": 14247481.85
+    },
+    {
+      "feature": "has_online_backup",
+      "VIF": 14025516.27
+    },
+    {
+      "feature": "has_internet_service",
+      "VIF": 5690427.34
+    },
+    {
+      "feature": "num_complaints",
+      "VIF": 4848302.18
+    },
+    {
+      "feature": "log_num_complaints",
+      "VIF": 40.03
+    },
+    {
+      "feature": "tenure",
+      "VIF": 35.64
+    },
+    {
+      "feature": "log_annual_income",
+      "VIF": 32.35
+    },
+    {
+      "feature": "log_totalcharges",
+      "VIF": 30.83
+    },
+    {
+      "feature": "signup_quarter",
+      "VIF": 17.74
+    },
+    {
+      "feature": "signup_month",
+      "VIF": 17.74
+    },
+    {
+      "feature": "totalcharges",
+      "VIF": 17.26
+    },
+    {
+      "feature": "net_satisfaction",
+      "VIF": 14.36
+    },
+    {
+      "feature": "annual_income",
+      "VIF": 13.24
+    },
+    {
+      "feature": "monthly_income_ratio",
+      "VIF": 12.61
+    },
+    {
+      "feature": "senior_monthly_charges",
+      "VIF": 11.18
+    },
+    {
+      "feature": "senior_citizen",
+      "VIF": 10.93
+    },
+    {
+      "feature": "avg_charge_per_tenure",
+      "VIF": 10.8
+    },
+    {
+      "feature": "monthlycharges",
+      "VIF": 10.69
+    },
+    {
+      "feature": "log_avg_monthly_gb",
+      "VIF": 10.47
+    },
+    {
+      "feature": "satisfaction_x_tenure",
+      "VIF": 9.39
+    },
+    {
+      "feature": "num_services",
+      "VIF": 7.8
+    },
+    {
+      "feature": "charges_per_service",
+      "VIF": 7.79
+    }
+  ],
+  "recommended_drops": [
+    "log_annual_income",
+    "log_totalcharges",
+    "total_active_services",
+    "log_num_complaints",
+    "signup_quarter",
+    "log_avg_monthly_gb",
+    "totalcharges",
+    "tenure",
+    "contract_x_complaint_rate",
+    "contract_x_late_payments",
+    "contract_x_complaints",
+    "contract_x_satisfaction",
+    "senior_citizen",
+    "log_days_since_last_interaction"
+  ],
+  "thresholds": {
+    "pearson_r": 0.75,
+    "vif": 5.0
+  }
+}

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Churn Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">📉</div>
+      <h1>Churn Intelligence</h1>
+      <p>ML Prediction Platform</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Dashboard</div>
+      <button class="nav-item active" data-page="overview" onclick="navigate('overview')">
+        <span class="nav-icon">◈</span> Overview
+      </button>
+
+      <div class="nav-section-label">Analysis</div>
+      <button class="nav-item" data-page="eda" onclick="navigate('eda')">
+        <span class="nav-icon">◉</span> Exploratory Data
+      </button>
+      <button class="nav-item" data-page="models" onclick="navigate('models')">
+        <span class="nav-icon">◎</span> Model Performance
+      </button>
+
+      <div class="nav-section-label">Predictions</div>
+      <button class="nav-item" data-page="predict" onclick="navigate('predict')">
+        <span class="nav-icon">◈</span> Predict Customer
+      </button>
+      <button class="nav-item" data-page="churners" onclick="navigate('churners')">
+        <span class="nav-icon">◉</span> Customer Deciles
+      </button>
+    </nav>
+
+    <div class="sidebar-status">
+      <span class="status-dot"></span>
+      <span style="color:var(--text-secondary)">API Connected</span>
+    </div>
+  </aside>
+
+  <!-- ── Main ── -->
+  <main class="main-content">
+
+    <!-- Overview -->
+    <section id="page-overview" class="page active">
+      <div class="page-header">
+        <h2>Overview</h2>
+        <p>Executive summary of churn metrics and model performance</p>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Total Customers</div>
+          <div class="kpi-value accent" id="kpi-total">—</div>
+          <div class="kpi-sub">In dataset</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Churned</div>
+          <div class="kpi-value danger" id="kpi-churn">—</div>
+          <div class="kpi-sub">Customers lost</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Churn Rate</div>
+          <div class="kpi-value warning" id="kpi-rate">—</div>
+          <div class="kpi-sub">Overall rate</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Best AUC-ROC</div>
+          <div class="kpi-value success" id="kpi-auc">—</div>
+          <div class="kpi-sub" id="kpi-best">—</div>
+        </div>
+      </div>
+
+      <div class="charts-grid">
+        <div class="card">
+          <div class="card-title">Churn Distribution</div>
+          <div class="chart-container"><canvas id="chart-churn-dist"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Churn Rate by Contract</div>
+          <div class="chart-container"><canvas id="chart-contract"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Churn Rate by Tenure Group</div>
+          <div class="chart-container"><canvas id="chart-tenure"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Avg. Satisfaction by Churn</div>
+          <div class="chart-container"><canvas id="chart-satisfaction"></canvas></div>
+        </div>
+      </div>
+      <div id="overview-error" style="color:var(--danger);font-size:13px;padding:8px 0"></div>
+    </section>
+
+    <!-- EDA -->
+    <section id="page-eda" class="page">
+      <div class="page-header">
+        <h2>Exploratory Data Analysis</h2>
+        <p>Distribution and behavioral patterns across the dataset</p>
+      </div>
+      <div id="eda-content"><div class="loading"><div class="spinner"></div> Loading EDA...</div></div>
+    </section>
+
+    <!-- Models -->
+    <section id="page-models" class="page">
+      <div class="page-header">
+        <h2>Model Performance</h2>
+        <p>Cross-validated comparison of LightGBM, XGBoost and Logistic Regression</p>
+      </div>
+      <div id="models-content"><div class="loading"><div class="spinner"></div> Loading results...</div></div>
+    </section>
+
+    <!-- Predict -->
+    <section id="page-predict" class="page">
+      <div class="page-header">
+        <h2>Predict Customer Churn</h2>
+        <p>Enter customer attributes to get an individual churn probability</p>
+      </div>
+
+      <div class="predict-layout">
+        <div class="card">
+          <div class="card-title">Customer Attributes</div>
+          <form id="predict-form">
+            <div class="form-grid">
+              <div class="form-group"><label>Age</label><input name="age" type="number" value="35" min="18" max="100" /></div>
+              <div class="form-group"><label>Gender</label>
+                <select name="gender"><option>Male</option><option>Female</option></select>
+              </div>
+              <div class="form-group"><label>Annual Income</label><input name="annual_income" type="number" value="55000" /></div>
+              <div class="form-group"><label>Education</label>
+                <select name="education"><option>college</option><option>master</option><option>high_school</option><option>phd</option></select>
+              </div>
+              <div class="form-group"><label>Marital Status</label>
+                <select name="marital_status"><option>married</option><option>single</option><option>widowed</option></select>
+              </div>
+              <div class="form-group"><label>Dependents</label><input name="dependents" type="number" value="1" min="0" /></div>
+              <div class="form-group"><label>Tenure (months)</label><input name="tenure" type="number" value="12" min="0" /></div>
+              <div class="form-group"><label>Contract</label>
+                <select name="contract"><option>month-to-month</option><option>one_year</option><option>two_year</option></select>
+              </div>
+              <div class="form-group"><label>Payment Method</label>
+                <select name="payment_method"><option>electronic_check</option><option>bank_transfer</option><option>credit_card</option><option>mailed_check</option></select>
+              </div>
+              <div class="form-group"><label>Paperless Billing</label>
+                <select name="paperless_billing"><option>Yes</option><option>No</option></select>
+              </div>
+              <div class="form-group"><label>Senior Citizen</label>
+                <select name="senior_citizen"><option value="0">No</option><option value="1">Yes</option></select>
+              </div>
+              <div class="form-group"><label>Monthly Charges</label><input name="monthlycharges" type="number" value="65" step="0.01" /></div>
+              <div class="form-group"><label>Total Charges</label><input name="totalcharges" type="number" value="780" step="0.01" /></div>
+              <div class="form-group"><label>Num Services</label><input name="num_services" type="number" value="3" min="0" max="8" /></div>
+              <div class="form-group"><label>Phone Service</label>
+                <select name="has_phone_service"><option value="1">Yes</option><option value="0">No</option></select>
+              </div>
+              <div class="form-group"><label>Internet Service</label>
+                <select name="has_internet_service"><option value="1">Yes</option><option value="0">No</option></select>
+              </div>
+              <div class="form-group"><label>Online Security</label>
+                <select name="has_online_security"><option value="0">No</option><option value="1">Yes</option></select>
+              </div>
+              <div class="form-group"><label>Online Backup</label>
+                <select name="has_online_backup"><option value="0">No</option><option value="1">Yes</option></select>
+              </div>
+              <div class="form-group"><label>Device Protection</label>
+                <select name="has_device_protection"><option value="0">No</option><option value="1">Yes</option></select>
+              </div>
+              <div class="form-group"><label>Tech Support</label>
+                <select name="has_tech_support"><option value="0">No</option><option value="1">Yes</option></select>
+              </div>
+              <div class="form-group"><label>Streaming TV</label>
+                <select name="has_streaming_tv"><option value="0">No</option><option value="1">Yes</option></select>
+              </div>
+              <div class="form-group"><label>Streaming Movies</label>
+                <select name="has_streaming_movies"><option value="0">No</option><option value="1">Yes</option></select>
+              </div>
+              <div class="form-group"><label>Satisfaction (1-10)</label><input name="customer_satisfaction" type="number" value="7" min="1" max="10" step="0.5" /></div>
+              <div class="form-group"><label>Complaints</label><input name="num_complaints" type="number" value="0" min="0" /></div>
+              <div class="form-group"><label>Service Calls</label><input name="num_service_calls" type="number" value="1" min="0" /></div>
+              <div class="form-group"><label>Late Payments</label><input name="late_payments" type="number" value="0" min="0" /></div>
+              <div class="form-group"><label>Avg Monthly GB</label><input name="avg_monthly_gb" type="number" value="60" step="0.1" /></div>
+              <div class="form-group"><label>Days Since Interaction</label><input name="days_since_last_interaction" type="number" value="30" min="0" /></div>
+              <div class="form-group"><label>Credit Score (optional)</label><input name="credit_score" type="number" value="" placeholder="e.g. 650" /></div>
+            </div>
+            <div style="margin-top:20px">
+              <button type="button" id="predict-btn" class="btn btn-primary" onclick="runPrediction()">
+                <span>⚡</span> Predict Churn
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div>
+          <div class="result-card" id="predict-result">
+            <div style="color:var(--text-muted);font-size:13px;padding:40px 0">
+              Fill in the form and click<br/><strong style="color:var(--text-secondary)">Predict Churn</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Deciles -->
+    <section id="page-churners" class="page">
+      <div class="page-header">
+        <h2>Customer Churn Deciles</h2>
+        <p>Top 100 customers ranked by churn probability — decile computed over the full sample (D10 = highest risk)</p>
+      </div>
+      <div id="churners-content"><div class="loading"><div class="spinner"></div> Scoring customers...</div></div>
+    </section>
+
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

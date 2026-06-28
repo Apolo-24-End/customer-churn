@@ -1,0 +1,33 @@
+# Data (demasiado grande para GitHub)
+data/
+*.csv
+
+# Cache de Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Modelos duplicados / backups con timestamp
+models/best_model_*.joblib
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Variables de entorno
+.env
+.env.local
+
+# Herramientas internas
+.claude/
+.codegraph/
