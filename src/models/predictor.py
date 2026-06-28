@@ -138,4 +138,9 @@ def get_decile_groups(top_n_per_decile: int = 20) -> list[dict]:
     with open(out, "w") as f:
         json.dump(groups, f, indent=2)
 
+    predictions_out = config.OUTPUTS_DIR / "predictions_all.csv"
+    full_df[["customer_id", "churn_probability", "decile"]].to_csv(
+        predictions_out, index=False, float_format="%.4f"
+    )
+
     return groups

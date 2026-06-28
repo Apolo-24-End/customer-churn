@@ -1,7 +1,10 @@
+import csv
+import io
 import json
 import logging
 import threading
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 from typing import Optional
 import config
@@ -127,4 +130,34 @@ def get_decile_groups(top_n: int = 20):
         status_code=503,
         detail="Decile group computation started in the background. Please retry in ~60 seconds.",
         headers={"Retry-After": "60"},
+    )
+
+
+@router.get("/export-decile/{decile}")
+def export_decile_csv(decile: int):
+    predictions_path = config.OUTPUTS_DIR / "predictions_all.csv"
+    if not predictions_path.exists():
+        raise HTTPException(status_code=404, detail="predictions_all.csv not found. Run the pipeline first.")
+    if not (1 <= decile <= 10):
+        raise HTTPException(status_code=400, detail="Decile must be between 1 and 10.")
+
+    def generate():
+        with open(predictions_path, newline="") as f:
+            reader = csv.DictReader(f)
+            output = io.StringIO()
+            writer = csv.DictWriter(output, fieldnames=["customer_id", "churn_probability", "decile"])
+            writer.writeheader()
+            yield output.getvalue()
+            for row in reader:
+                if int(row["decile"]) == decile:
+                    output = io.StringIO()
+                    writer = csv.DictWriter(output, fieldnames=["customer_id", "churn_probability", "decile"])
+                    writer.writerow(row)
+                    yield output.getvalue()
+
+    filename = f"decil_{decile}_clientes.csv"
+    return StreamingResponse(
+        generate(),
+        media_type="text/csv",
+        headers={"Content-Disposition": f"attachment; filename={filename}"},
     )
